@@ -11,8 +11,6 @@ import static org.eclipse.aether.repository.AuthenticationContext.PASSWORD;
 import static org.eclipse.aether.repository.AuthenticationContext.USERNAME;
 import static pageObjectModel.AdminPage.*;
 import static pageObjectModel.LoginPage.*;
-
-
 import io.qameta.allure.*;
 
 
@@ -73,19 +71,37 @@ public class TestLogin extends BeforeAfterAll {
     @Test
     @Order(3)
     @DisplayName("Add job title")
+
     void testAddJobTitle() {
 
         openLoginPage();
         login();
-        AdminPage.clickAdminButton();
-        AdminPage.clickMenuAdminJob();
-        AdminPage.clickMenuJobTitles();
-        AdminPage.clickAddJobTitlesButton();
+        clickAdminButton();
+        clickMenuAdminJob();
+        clickMenuJobTitles();
+        clickAddJobTitlesButton();
+        enterTheDataInTheFieldsAddJobTitles();
+        clickSaveButton();
 
+    }
 
+    @Description("Checking for adding a candidate")
+    @Owner("Svetlana Petrovich")
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("Add candidate to the site")
+    @Link("https://opensource-demo.orangehrmlive.com/index.php/recruitment/viewCandidates")
+    @Test
+    @Order(4)
+    @DisplayName("Add candidate")
 
+    void testAddСandidate() {
+
+        openLoginPage();
+        login();
 
 
     }
+
+
 
 }

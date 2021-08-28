@@ -1,7 +1,7 @@
 package pageObjectModel;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
-
+import java.io.File;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 
@@ -26,9 +26,10 @@ public class AdminPage {
 
     //Add job titles fields
 
-    public static final SelenideElement job_title = $("#jobTitle_jobTitle");
-    public static final SelenideElement job_description = $("#jobTitle_jobDescription");
-    public static final SelenideElement note = $("#jobTitle_note");
+    public static final SelenideElement job_title_field = $("#jobTitle_jobTitle");
+    public static final SelenideElement job_description_field = $("#jobTitle_jobDescription");
+    public static final SelenideElement job_specification_field = $("#jobTitle_jobSpec");
+    public static final SelenideElement note_field = $("#jobTitle_note");
 
     //Values of fields in the add user form
 
@@ -40,8 +41,10 @@ public class AdminPage {
     //Values of fields in the add job titles
 
     public static final String JOB_TITLE = ("QA automation engineer");
-    public static final String EMPLOYEE_NAME = ("Anthony Nolan");
-    public static final String EMPLOYEE_NAME = ("Anthony Nolan");
+    public static final String JOB_DESCRIPTION = ("Development of automated tests to validate the functionality of web applications");
+    private static final String JOB_SPECIFICATION = new File("src/main/resources/AQA.jpg").getAbsolutePath();
+    public static final String NOTE = ("-");
+    //private static final ElementsCollection removeButton = $$x("//button[contains(@data-test, 'remove')]");
 
 
     //Locators for job title
@@ -93,10 +96,10 @@ public class AdminPage {
     @Step("Enter the data in the fields add job titles")
     public static void enterTheDataInTheFieldsAddJobTitles() {
 
-        employee_name_field.sendKeys(EMPLOYEE_NAME);
-        username_field.sendKeys(USERNAME);
-        password_field.sendKeys(PASSWORD);
-        confirm_password_field.sendKeys(CONFIRM_PASSWORD);
+        job_title_field.sendKeys(JOB_TITLE);
+        job_description_field.sendKeys(JOB_DESCRIPTION);
+        job_specification_field.sendKeys(JOB_SPECIFICATION);
+        note_field.sendKeys(NOTE);
 
     }
 }
