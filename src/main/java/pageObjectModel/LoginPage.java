@@ -10,13 +10,16 @@ import io.qameta.allure.Step;
 public class LoginPage {
 
     //Login form fields
+
     public static final SelenideElement username_field = $("#txtUsername");
     public static final SelenideElement password_field = $("#txtPassword");
 
     //Button
+
     public static final SelenideElement login_button = $("#btnLogin");
 
     //Data
+
     public static final CharSequence USERNAME = ("Admin");
     public static final CharSequence PASSWORD = ("admin123");
 
