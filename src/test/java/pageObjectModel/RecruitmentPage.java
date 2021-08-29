@@ -10,8 +10,8 @@ public class RecruitmentPage {
 
     public static void addCandidate() {
 
-        recruitment_button.click();
-        candidates_button.click();
+        recruitment_menu.click();
+        candidates_menu.click();
         add_button.click();
 
     }

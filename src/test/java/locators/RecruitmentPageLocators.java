@@ -6,9 +6,9 @@ import static com.codeborne.selenide.Selenide.$x;
 
 public class RecruitmentPageLocators {
 
-    //Buttons
+    //Menu
 
-    public static final SelenideElement recruitment_button = $x("//b[text()='Recruitment']");
-    public static final SelenideElement candidates_button = $("#menu_recruitment_viewCandidates");
+    public static final SelenideElement recruitment_menu = $x("//b[text()='Recruitment']");
+    public static final SelenideElement candidates_menu = $("#menu_recruitment_viewCandidates");
 
 }

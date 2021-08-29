@@ -90,7 +90,8 @@ public class TestLogin extends BeforeAfterAll {
 
         openLoginPage();
         login();
-
+        clickAddButton();
+        clickSaveButton();
 
     }
 
