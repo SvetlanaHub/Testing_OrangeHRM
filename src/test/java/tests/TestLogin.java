@@ -4,11 +4,7 @@ import com.codeborne.selenide.junit5.ScreenShooterExtension;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import pageObjectModel.*;
-
-import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
-import static org.eclipse.aether.repository.AuthenticationContext.PASSWORD;
-import static org.eclipse.aether.repository.AuthenticationContext.USERNAME;
 import static pageObjectModel.AdminPage.*;
 import static pageObjectModel.LoginPage.*;
 import io.qameta.allure.*;
@@ -52,14 +48,10 @@ public class TestLogin extends BeforeAfterAll {
 
         openLoginPage();
         login();
-        AdminPage.clickAdminButton();
-        AdminPage.clickAddButton();
-        AdminPage.enterTheDataInTheFieldsAddUser();
-        AdminPage.clickSaveButton();
-        AdminPage.employee_name_field.shouldHave(text(EMPLOYEE_NAME));
-        AdminPage.username_field.shouldHave(text(USERNAME));
-        AdminPage.password_field.shouldHave(text(PASSWORD));
-        AdminPage.confirm_password_field.shouldHave(text(CONFIRM_PASSWORD));
+        clickAdminButton();
+        clickAddButton();
+        enterTheDataInTheFieldsAddUser();
+        clickSaveButton();
 
     }
 

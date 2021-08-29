@@ -1,22 +1,10 @@
 package pageObjectModel;
 
-
-import com.codeborne.selenide.SelenideElement;
-
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static locators.LoginPageLocators.*;
 import io.qameta.allure.Step;
+import static com.codeborne.selenide.Selenide.open;
 
 public class LoginPage {
-
-    //Login form fields
-
-    public static final SelenideElement username_field = $("#txtUsername");
-    public static final SelenideElement password_field = $("#txtPassword");
-
-    //Button
-
-    public static final SelenideElement login_button = $("#btnLogin");
 
     //Data
 
