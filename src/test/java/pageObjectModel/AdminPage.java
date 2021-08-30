@@ -28,7 +28,7 @@ public class AdminPage {
 
     @Step("Click add button")
     public static void clickAddButton() {
-        add_button.click();;
+        add_button.click();
     }
 
     @Step("Enter the data in the fields")

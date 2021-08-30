@@ -1,6 +1,9 @@
 package tests;
 
+import com.codeborne.selenide.CollectionCondition;
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.junit5.ScreenShooterExtension;
+import locators.RecruitmentPageLocators;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import pageObjectModel.*;
@@ -29,13 +32,13 @@ public class TestLogin extends BeforeAfterAll {
 
     void testLogin() {
 
-        openLoginPage();
-        login();
-        DashboardPage.welcome.shouldBe(visible);
+        LoginPage.openLoginPage();
+                  login();
+        DashboardPage.welcome_message.shouldBe(visible);
 
     }
 
-    @Description("Checking for added user")
+    @Description("Checking for added user with form validation")
     @Owner("Svetlana Petrovich")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("Add user to the site")
@@ -46,16 +49,16 @@ public class TestLogin extends BeforeAfterAll {
 
     void testAddUser() {
 
-        openLoginPage();
-        login();
-        clickAdminButton();
-        clickAddButton();
-        enterTheDataInTheFieldsAddUser();
-        clickSaveButton();
+        LoginPage.openLoginPage();
+                  login();
+        AdminPage.clickAdminButton();
+                  clickAddButton();
+                  enterTheDataInTheFieldsAddUser();
+                  clickSaveButton();
 
     }
 
-    @Description("Checking for adding a job title")
+    @Description("Checking for adding a three job title")
     @Owner("Svetlana Petrovich")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("Add job title to the site")
@@ -66,18 +69,18 @@ public class TestLogin extends BeforeAfterAll {
 
     void testAddJobTitle() {
 
-        openLoginPage();
-        login();
-        clickAdminButton();
-        clickMenuAdminJob();
-        clickMenuJobTitles();
-        clickAddJobTitlesButton();
-        enterTheDataInTheFieldsAddJobTitles();
-        clickSaveButton();
+        LoginPage.openLoginPage();
+                  login();
+        AdminPage.clickAdminButton();
+                  clickMenuAdminJob();
+                  clickMenuJobTitles();
+                  clickAddJobTitlesButton();
+                  enterTheDataInTheFieldsAddJobTitles();
+                  clickSaveButton();
 
     }
 
-    @Description("Checking for adding a candidate")
+    @Description("Checking for adding a candidate without validating the form")
     @Owner("Svetlana Petrovich")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("Add candidate to the site")
@@ -88,13 +91,32 @@ public class TestLogin extends BeforeAfterAll {
 
     void testAddСandidate() {
 
-        openLoginPage();
-        login();
-        clickAddButton();
-        clickSaveButton();
+        LoginPage.openLoginPage();
+                  login();
+        AdminPage.clickAddButton();
+                  clickSaveButton();
+        RecruitmentPageLocators.required_message.shouldBe();
+
 
     }
 
+    @Description("Check the presence of elements in the dashboard")
+    @Owner("Svetlana Petrovich")
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("presence of elements in the dashboard")
+    @Link("https://opensource-demo.orangehrmlive.com/index.php/dashboard")
+    @Test
+    @Order(5)
+    @DisplayName("Check the presence of elements")
+
+    void testPresenceOfElements() {
+
+        LoginPage.openLoginPage();
+        login();
+        DashboardPage.quick_launge.shouldHave(CollectionCondition.size(6));
+
+
+    }
 
 
 }
