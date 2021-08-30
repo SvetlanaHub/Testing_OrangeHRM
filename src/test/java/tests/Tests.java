@@ -1,14 +1,17 @@
 package tests;
 
 import com.codeborne.selenide.CollectionCondition;
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.junit5.ScreenShooterExtension;
+import locators.DirectoryPageLocators;
 import locators.RecruitmentPageLocators;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import pageObjectModel.*;
+
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static pageObjectModel.AdminPage.*;
+import static pageObjectModel.DirectoryPage.*;
 import static pageObjectModel.LoginPage.*;
 import io.qameta.allure.*;
 
@@ -16,7 +19,7 @@ import io.qameta.allure.*;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 
-public class TestLogin extends BeforeAfterAll {
+public class Tests extends BeforeAfterAll {
 
     @RegisterExtension
     static ScreenShooterExtension screenshotEmAll = new ScreenShooterExtension(true).to("resources/screenshots");
@@ -112,11 +115,29 @@ public class TestLogin extends BeforeAfterAll {
     void testPresenceOfElements() {
 
         LoginPage.openLoginPage();
-        login();
+                  login();
         DashboardPage.quick_launge.shouldHave(CollectionCondition.size(6));
-
 
     }
 
+    @Description("Checking the search for personnel by category (name)")
+    @Owner("Svetlana Petrovich")
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("Search for personnel")
+    @Link("https://opensource-demo.orangehrmlive.com/index.php/directory/viewDirectory/reset/1")
+    @Test
+    @Order(6)
+    @DisplayName("Search for personnel")
+
+    void testSearchForPersonnel() {
+
+        LoginPage.openLoginPage();
+                  login();
+        DirectoryPage.clickDirectoryMenu();
+                      enterTheName();
+                      clickSearchButton();
+        DirectoryPageLocators.name.shouldHave(text("Lisa Andrews"));
+
+    }
 
 }

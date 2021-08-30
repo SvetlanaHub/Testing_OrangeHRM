@@ -5,8 +5,9 @@ import static com.codeborne.selenide.Selenide.$$x;
 
 public class RecruitmentPageLocators {
 
-    //Message
+    //Menu
 
     public static final ElementsCollection required_message = $$x("//span[text()='Required']");
+
 
 }
