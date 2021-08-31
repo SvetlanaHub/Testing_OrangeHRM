@@ -18,7 +18,6 @@ public class AdminPage {
     public static final String JOB_DESCRIPTION = ("Development of automated tests to validate the functionality of web applications");
     private static final String JOB_SPECIFICATION = new File("src/main/resources/AQA.jpg").getAbsolutePath();
     public static final String NOTE = ("-");
-    //private static final ElementsCollection removeButton = $$x("//button[contains(@data-test, 'remove')]");
 
 
     @Step("Click admin button")

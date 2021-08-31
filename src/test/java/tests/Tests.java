@@ -3,6 +3,7 @@ package tests;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.junit5.ScreenShooterExtension;
 import locators.DirectoryPageLocators;
+import locators.PIMPageLocators;
 import locators.RecruitmentPageLocators;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.RegisterExtension;
@@ -11,6 +12,8 @@ import pageObjectModel.*;
 import static com.codeborne.selenide.Condition.text;
 import static pageObjectModel.AdminPage.*;
 import static pageObjectModel.DirectoryPage.*;
+import static pageObjectModel.PIMPage.*;
+
 import io.qameta.allure.*;
 
 
@@ -47,7 +50,7 @@ public class Tests extends BeforeAfterEachTest {
     @Feature("Add job title to the site")
     @Link("https://opensource-demo.orangehrmlive.com/index.php/admin/saveJobTitle")
     @Test
-    @Order(4)
+    @Order(3)
     @DisplayName("Add job title")
 
     void testAddJobTitle() {
@@ -67,7 +70,7 @@ public class Tests extends BeforeAfterEachTest {
     @Feature("Add candidate to the site")
     @Link("https://opensource-demo.orangehrmlive.com/index.php/recruitment/viewCandidates")
     @Test
-    @Order(5)
+    @Order(4)
     @DisplayName("Add candidate")
 
     void testAddСandidate() {
@@ -84,7 +87,7 @@ public class Tests extends BeforeAfterEachTest {
     @Feature("presence of elements in the dashboard")
     @Link("https://opensource-demo.orangehrmlive.com/index.php/dashboard")
     @Test
-    @Order(6)
+    @Order(5)
     @DisplayName("Check the presence of elements")
 
     void testPresenceOfElements() {
@@ -99,7 +102,7 @@ public class Tests extends BeforeAfterEachTest {
     @Feature("Search for personnel")
     @Link("https://opensource-demo.orangehrmlive.com/index.php/directory/viewDirectory/reset/1")
     @Test
-    @Order(7)
+    @Order(6)
     @DisplayName("Search for personnel")
 
     void testSearchForPersonnel() {
@@ -108,6 +111,25 @@ public class Tests extends BeforeAfterEachTest {
                       enterTheName();
                       clickSearchButton();
         DirectoryPageLocators.name.shouldHave(text("Lisa Andrews"));
+
+    }
+
+    @Description("Checking the addition of an employee")
+    @Owner("Svetlana Petrovich")
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("Add employee to the site")
+    @Link("https://opensource-demo.orangehrmlive.com/index.php/pim/addEmployee")
+    @Test
+    @Order(7)
+    @DisplayName("Add employee")
+
+    void testAddEmployee() {
+
+        PIMPage.clickMenuPIM();
+                clickAddEmployeeMenu();
+                enterTheDataInTheFormFields();
+        AdminPage.clickSaveButton();
+        PIMPageLocators.mark_ros.shouldHave(text("Mark Ros"));
 
     }
 

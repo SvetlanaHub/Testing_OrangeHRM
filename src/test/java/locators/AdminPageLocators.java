@@ -34,6 +34,4 @@ public class AdminPageLocators {
     public static final SelenideElement menu_admin_Job = $("#menu_admin_Job");
     public static final SelenideElement menu_job_titles = $("#menu_admin_viewJobTitleList");
 
-
-
 }
