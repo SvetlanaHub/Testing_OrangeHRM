@@ -9,37 +9,19 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 import pageObjectModel.*;
 
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
 import static pageObjectModel.AdminPage.*;
 import static pageObjectModel.DirectoryPage.*;
-import static pageObjectModel.LoginPage.*;
 import io.qameta.allure.*;
 
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 
-public class Tests extends BeforeAfterAll {
+public class Tests extends BeforeAfterEachTest {
 
     @RegisterExtension
     static ScreenShooterExtension screenshotEmAll = new ScreenShooterExtension(true).to("resources/screenshots");
 
-    @Description("Login test with a valid username and password")
-    @Owner("Svetlana Petrovich")
-    @Severity(SeverityLevel.BLOCKER)
-    @Feature("Login to the site")
-    @Link("https://opensource-demo.orangehrmlive.com/")
-    @Test
-    @Order(1)
-    @DisplayName("Login")
-
-    void testLogin() {
-
-        LoginPage.openLoginPage();
-                  login();
-        DashboardPage.welcome_message.shouldBe(visible);
-
-    }
 
     @Description("Checking for added user with form validation")
     @Owner("Svetlana Petrovich")
@@ -52,8 +34,6 @@ public class Tests extends BeforeAfterAll {
 
     void testAddUser() {
 
-        LoginPage.openLoginPage();
-                  login();
         AdminPage.clickAdminButton();
                   clickAddButton();
                   enterTheDataInTheFieldsAddUser();
@@ -67,13 +47,11 @@ public class Tests extends BeforeAfterAll {
     @Feature("Add job title to the site")
     @Link("https://opensource-demo.orangehrmlive.com/index.php/admin/saveJobTitle")
     @Test
-    @Order(3)
+    @Order(4)
     @DisplayName("Add job title")
 
     void testAddJobTitle() {
 
-        LoginPage.openLoginPage();
-                  login();
         AdminPage.clickAdminButton();
                   clickMenuAdminJob();
                   clickMenuJobTitles();
@@ -89,17 +67,14 @@ public class Tests extends BeforeAfterAll {
     @Feature("Add candidate to the site")
     @Link("https://opensource-demo.orangehrmlive.com/index.php/recruitment/viewCandidates")
     @Test
-    @Order(4)
+    @Order(5)
     @DisplayName("Add candidate")
 
     void testAddСandidate() {
 
-        LoginPage.openLoginPage();
-                  login();
         AdminPage.clickAddButton();
                   clickSaveButton();
         RecruitmentPageLocators.required_message.shouldBe();
-
 
     }
 
@@ -109,13 +84,11 @@ public class Tests extends BeforeAfterAll {
     @Feature("presence of elements in the dashboard")
     @Link("https://opensource-demo.orangehrmlive.com/index.php/dashboard")
     @Test
-    @Order(5)
+    @Order(6)
     @DisplayName("Check the presence of elements")
 
     void testPresenceOfElements() {
 
-        LoginPage.openLoginPage();
-                  login();
         DashboardPage.quick_launge.shouldHave(CollectionCondition.size(6));
 
     }
@@ -126,13 +99,11 @@ public class Tests extends BeforeAfterAll {
     @Feature("Search for personnel")
     @Link("https://opensource-demo.orangehrmlive.com/index.php/directory/viewDirectory/reset/1")
     @Test
-    @Order(6)
+    @Order(7)
     @DisplayName("Search for personnel")
 
     void testSearchForPersonnel() {
 
-        LoginPage.openLoginPage();
-                  login();
         DirectoryPage.clickDirectoryMenu();
                       enterTheName();
                       clickSearchButton();
