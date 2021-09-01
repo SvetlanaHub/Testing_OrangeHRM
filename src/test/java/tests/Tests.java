@@ -66,13 +66,33 @@ public class Tests extends BeforeAfterEachTest {
 
     }
 
+    @Description("Checking delete of three job titles")
+    @Owner("Svetlana Petrovich")
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("Delete job titles to the site")
+    //@Link("https://opensource-demo.orangehrmlive.com/index.php/admin/saveJobTitle")
+    @Test
+    @Order(4)
+    @DisplayName("Delete job titles")
+
+    void testDeleteJobTitle() {
+
+        //AdminPage.clickAdminButton();
+        //clickMenuAdminJob();
+        //clickMenuJobTitles();
+        //clickAddJobTitlesButton();
+        //enterTheDataInTheFieldsAddJobTitles();
+        //clickSaveButton();
+
+    }
+
     @Description("Checking for adding a candidate without validating the form")
     @Owner("Svetlana Petrovich")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("Add candidate to the site")
     @Link("https://opensource-demo.orangehrmlive.com/index.php/recruitment/viewCandidates")
     @Test
-    @Order(4)
+    @Order(5)
     @DisplayName("Add candidate")
 
     void testAddСandidate() {
@@ -83,13 +103,30 @@ public class Tests extends BeforeAfterEachTest {
 
     }
 
+    @Description("Checking leave assignment")
+    @Owner("Svetlana Petrovich")
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("Assign leave")
+    @Link("https://opensource-demo.orangehrmlive.com/index.php/leave/assignLeave")
+    @Test
+    @Order(8)
+    @DisplayName("Assign leave")
+
+    void testAssignLeave() {
+
+        AdminPage.clickAddButton();
+        clickSaveButton();
+        RecruitmentPageLocators.required_message.shouldHave(CollectionCondition.exactTexts("Required"));
+
+    }
+
     @Description("Check the presence of elements in the dashboard")
     @Owner("Svetlana Petrovich")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("Presence of elements in the dashboard")
     @Link("https://opensource-demo.orangehrmlive.com/index.php/dashboard")
     @Test
-    @Order(5)
+    @Order(9)
     @DisplayName("Check the presence of elements")
 
     void testPresenceOfElements() {
@@ -104,7 +141,7 @@ public class Tests extends BeforeAfterEachTest {
     @Feature("Search for personnel")
     @Link("https://opensource-demo.orangehrmlive.com/index.php/directory/viewDirectory/reset/1")
     @Test
-    @Order(6)
+    @Order(10)
     @DisplayName("Search for personnel")
 
     void testSearchForPersonnel() {
@@ -122,7 +159,7 @@ public class Tests extends BeforeAfterEachTest {
     @Feature("Add employee to the site")
     @Link("https://opensource-demo.orangehrmlive.com/index.php/pim/addEmployee")
     @Test
-    @Order(7)
+    @Order(6)
     @DisplayName("Add employee")
 
     void testAddEmployee() {
@@ -141,7 +178,7 @@ public class Tests extends BeforeAfterEachTest {
     @Feature("Employee editing")
     @Link("https://opensource-demo.orangehrmlive.com/index.php/pim/viewEmployee/empNumber/54")
     @Test
-    @Order(8)
+    @Order(7)
     @DisplayName("Employee editing")
 
     void testEditEmployee() {
