@@ -9,5 +9,4 @@ public class RecruitmentPageLocators {
 
     public static final ElementsCollection required_message = $$x("//span[text()='Required']");
 
-
 }

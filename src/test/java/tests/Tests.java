@@ -2,6 +2,7 @@ package tests;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.junit5.ScreenShooterExtension;
+import locators.AdminPageLocators;
 import locators.DirectoryPageLocators;
 import locators.PIMPageLocators;
 import locators.RecruitmentPageLocators;
@@ -41,6 +42,7 @@ public class Tests extends BeforeAfterEachTest {
                   clickAddButton();
                   enterTheDataInTheFieldsAddUser();
                   clickSaveButton();
+        AdminPageLocators.anthony_nolan.shouldHave(text("Anthony Nolan"));
 
     }
 
@@ -77,14 +79,14 @@ public class Tests extends BeforeAfterEachTest {
 
         AdminPage.clickAddButton();
                   clickSaveButton();
-        RecruitmentPageLocators.required_message.shouldBe();
+        RecruitmentPageLocators.required_message.shouldHave(CollectionCondition.exactTexts("Required"));
 
     }
 
     @Description("Check the presence of elements in the dashboard")
     @Owner("Svetlana Petrovich")
     @Severity(SeverityLevel.CRITICAL)
-    @Feature("presence of elements in the dashboard")
+    @Feature("Presence of elements in the dashboard")
     @Link("https://opensource-demo.orangehrmlive.com/index.php/dashboard")
     @Test
     @Order(5)
@@ -110,7 +112,7 @@ public class Tests extends BeforeAfterEachTest {
         DirectoryPage.clickDirectoryMenu();
                       enterTheName();
                       clickSearchButton();
-        DirectoryPageLocators.name.shouldHave(text("Lisa Andrews"));
+        DirectoryPageLocators.name.shouldHave(text("Cecil Bonaparte"));
 
     }
 
@@ -130,6 +132,29 @@ public class Tests extends BeforeAfterEachTest {
                 enterTheDataInTheFormFields();
         AdminPage.clickSaveButton();
         PIMPageLocators.mark_ros.shouldHave(text("Mark Ros"));
+
+    }
+
+    @Description("Checking employee edits")
+    @Owner("Svetlana Petrovich")
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("Employee editing")
+    @Link("https://opensource-demo.orangehrmlive.com/index.php/pim/viewEmployee/empNumber/54")
+    @Test
+    @Order(8)
+    @DisplayName("Employee editing")
+
+    void testEditEmployee() {
+
+        PIMPage.clickMenuPIM();
+                clickEmployeeListMenu();
+                enterTheEmployeeName();
+                clickSearchListButton();
+                clickOnNameLink();
+                clickEditButton();
+                enterTheMiddleName();
+                clickSaveListButton();
+        PIMPageLocators.mark_ferson_ros.shouldHave(text("Mark Ferson Ros"));
 
     }
 

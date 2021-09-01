@@ -7,7 +7,7 @@ public class DirectoryPage {
 
     //Value of field in the directory form field
 
-    public static final CharSequence NAME = ("Lisa Andrews");
+    public static final CharSequence NAME = ("Cecil Bonaparte");
 
 
     @Step("Click directory menu")

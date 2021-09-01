@@ -22,6 +22,10 @@ public class AdminPageLocators {
     public static final SelenideElement password_field = $("#systemUser_password");
     public static final SelenideElement confirm_password_field = $("#systemUser_confirmPassword");
 
+    //User employee name
+
+    public static final SelenideElement anthony_nolan = $x("//td[text()=\"Anthony Nolan\"]");
+
     //Add job titles fields
 
     public static final SelenideElement job_title_field = $("#jobTitle_jobTitle");
@@ -33,5 +37,6 @@ public class AdminPageLocators {
 
     public static final SelenideElement menu_admin_Job = $("#menu_admin_Job");
     public static final SelenideElement menu_job_titles = $("#menu_admin_viewJobTitleList");
+
 
 }

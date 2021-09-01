@@ -21,5 +21,5 @@ public class DirectoryPageLocators {
 
     //Name
 
-    public static final SelenideElement name = $x("//b[text()='Lisa Andrews']");
+    public static final SelenideElement name = $x("//b[text()='Cecil Bonaparte']");
 }
