@@ -13,7 +13,7 @@ public class PIMPage {
 
     public static final CharSequence FIRST_NAME = ("Mark");
     public static final CharSequence LAST_NAME = ("Ros");
-    public static final CharSequence EMPLOYEE_ID = ("0277");
+    public static final CharSequence EMPLOYEE_ID = ("1234");
     private static final String PHOTOGRAPH = new File("src/main/resources/Sales Representative.png").getAbsolutePath();
 
     public static final CharSequence EMPLOYEE_NAME = ("Mark Ros");

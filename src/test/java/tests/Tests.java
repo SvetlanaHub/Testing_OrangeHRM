@@ -2,17 +2,16 @@ package tests;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.junit5.ScreenShooterExtension;
-import locators.AdminPageLocators;
-import locators.DirectoryPageLocators;
-import locators.PIMPageLocators;
-import locators.RecruitmentPageLocators;
+import locators.*;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import pageObjectModel.*;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selenide.switchTo;
 import static pageObjectModel.AdminPage.*;
 import static pageObjectModel.DirectoryPage.*;
+import static pageObjectModel.LeavePage.*;
 import static pageObjectModel.PIMPage.*;
 
 import io.qameta.allure.*;
@@ -25,7 +24,6 @@ public class Tests extends BeforeAfterEachTest {
 
     @RegisterExtension
     static ScreenShooterExtension screenshotEmAll = new ScreenShooterExtension(true).to("resources/screenshots");
-
 
     @Description("Checking for added user with form validation")
     @Owner("Svetlana Petrovich")
@@ -45,6 +43,48 @@ public class Tests extends BeforeAfterEachTest {
         AdminPageLocators.anthony_nolan.shouldHave(text("Anthony Nolan"));
 
     }
+    @Description("Form validation with employee details")
+    @Owner("Svetlana Petrovich")
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("Form validation with employee details")
+    @Link("https://opensource-demo.orangehrmlive.com/index.php/pim/viewEmployee/empNumber/18")
+    @Test
+    @Order(3)
+    @DisplayName("Employee details")
+
+    void testEmployeeDetails() {
+
+        PIMPage.clickMenuPIM();
+                clickEmployeeListMenu();
+        //enterTheDataInTheFieldsAddUser();
+        //clickSaveButton();
+        //AdminPageLocators.anthony_nolan.shouldHave(text("Anthony Nolan"));
+
+    }
+
+
+    @Description("Checking leave assignment")
+    @Owner("Svetlana Petrovich")
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("Assign leave")
+    @Link("https://opensource-demo.orangehrmlive.com/index.php/leave/assignLeave")
+    @Test
+    @Order(4)
+    @DisplayName("Assign leave")
+
+    void testAssignLeave() {
+
+        LeavePage.clickMenuLeave();
+                  clickAssignLeaveMenu();
+                  enterTheDataInTheAssignLeaveFormFields();
+                  clickAssignButton();
+                  switchTo().alert().accept();
+                  clickLeaveListMenu();
+                  clickСheckboxAll();
+        DirectoryPage.clickSearchButton();
+        LeavePageLocators.anthony_nolan.shouldHave(text("Anthony Nolan"));
+
+    }
 
     @Description("Checking for adding a three job title")
     @Owner("Svetlana Petrovich")
@@ -52,7 +92,7 @@ public class Tests extends BeforeAfterEachTest {
     @Feature("Add job title to the site")
     @Link("https://opensource-demo.orangehrmlive.com/index.php/admin/saveJobTitle")
     @Test
-    @Order(3)
+    @Order(5)
     @DisplayName("Add job title")
 
     void testAddJobTitle() {
@@ -72,7 +112,7 @@ public class Tests extends BeforeAfterEachTest {
     @Feature("Delete job titles to the site")
     //@Link("https://opensource-demo.orangehrmlive.com/index.php/admin/saveJobTitle")
     @Test
-    @Order(4)
+    @Order(6)
     @DisplayName("Delete job titles")
 
     void testDeleteJobTitle() {
@@ -92,31 +132,57 @@ public class Tests extends BeforeAfterEachTest {
     @Feature("Add candidate to the site")
     @Link("https://opensource-demo.orangehrmlive.com/index.php/recruitment/viewCandidates")
     @Test
-    @Order(5)
+    @Order(7)
     @DisplayName("Add candidate")
 
     void testAddСandidate() {
 
+        RecruitmentPage.clickMenuRecruitment();
         AdminPage.clickAddButton();
                   clickSaveButton();
-        RecruitmentPageLocators.required_message.shouldHave(CollectionCondition.exactTexts("Required"));
+        RecruitmentPageLocators.required_message.shouldHave(CollectionCondition.size(3));
 
     }
 
-    @Description("Checking leave assignment")
+    @Description("Checking the addition of an employee")
     @Owner("Svetlana Petrovich")
     @Severity(SeverityLevel.CRITICAL)
-    @Feature("Assign leave")
-    @Link("https://opensource-demo.orangehrmlive.com/index.php/leave/assignLeave")
+    @Feature("Add employee to the site")
+    @Link("https://opensource-demo.orangehrmlive.com/index.php/pim/addEmployee")
     @Test
     @Order(8)
-    @DisplayName("Assign leave")
+    @DisplayName("Add employee to the site")
 
-    void testAssignLeave() {
+    void testAddEmployee() {
 
-        AdminPage.clickAddButton();
-        clickSaveButton();
-        RecruitmentPageLocators.required_message.shouldHave(CollectionCondition.exactTexts("Required"));
+        PIMPage.clickMenuPIM();
+        clickAddEmployeeMenu();
+        enterTheDataInTheFormFields();
+        AdminPage.clickSaveButton();
+        PIMPageLocators.mark_ros.shouldHave(text("Mark Ros"));
+
+    }
+
+    @Description("Checking employee edits")
+    @Owner("Svetlana Petrovich")
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("Employee editing")
+    @Link("https://opensource-demo.orangehrmlive.com/index.php/pim/viewEmployee/empNumber/54")
+    @Test
+    @Order(9)
+    @DisplayName("Employee editing")
+
+    void testEditEmployee() {
+
+        PIMPage.clickMenuPIM();
+        clickEmployeeListMenu();
+        enterTheEmployeeName();
+        clickSearchListButton();
+        clickOnNameLink();
+        clickEditButton();
+        enterTheMiddleName();
+        clickSaveListButton();
+        PIMPageLocators.mark_ferson_ros.shouldHave(text("Mark Ferson Ros"));
 
     }
 
@@ -126,7 +192,7 @@ public class Tests extends BeforeAfterEachTest {
     @Feature("Presence of elements in the dashboard")
     @Link("https://opensource-demo.orangehrmlive.com/index.php/dashboard")
     @Test
-    @Order(9)
+    @Order(10)
     @DisplayName("Check the presence of elements")
 
     void testPresenceOfElements() {
@@ -141,7 +207,7 @@ public class Tests extends BeforeAfterEachTest {
     @Feature("Search for personnel")
     @Link("https://opensource-demo.orangehrmlive.com/index.php/directory/viewDirectory/reset/1")
     @Test
-    @Order(10)
+    @Order(11)
     @DisplayName("Search for personnel")
 
     void testSearchForPersonnel() {
@@ -150,48 +216,6 @@ public class Tests extends BeforeAfterEachTest {
                       enterTheName();
                       clickSearchButton();
         DirectoryPageLocators.name.shouldHave(text("Cecil Bonaparte"));
-
-    }
-
-    @Description("Checking the addition of an employee")
-    @Owner("Svetlana Petrovich")
-    @Severity(SeverityLevel.CRITICAL)
-    @Feature("Add employee to the site")
-    @Link("https://opensource-demo.orangehrmlive.com/index.php/pim/addEmployee")
-    @Test
-    @Order(6)
-    @DisplayName("Add employee")
-
-    void testAddEmployee() {
-
-        PIMPage.clickMenuPIM();
-                clickAddEmployeeMenu();
-                enterTheDataInTheFormFields();
-        AdminPage.clickSaveButton();
-        PIMPageLocators.mark_ros.shouldHave(text("Mark Ros"));
-
-    }
-
-    @Description("Checking employee edits")
-    @Owner("Svetlana Petrovich")
-    @Severity(SeverityLevel.CRITICAL)
-    @Feature("Employee editing")
-    @Link("https://opensource-demo.orangehrmlive.com/index.php/pim/viewEmployee/empNumber/54")
-    @Test
-    @Order(7)
-    @DisplayName("Employee editing")
-
-    void testEditEmployee() {
-
-        PIMPage.clickMenuPIM();
-                clickEmployeeListMenu();
-                enterTheEmployeeName();
-                clickSearchListButton();
-                clickOnNameLink();
-                clickEditButton();
-                enterTheMiddleName();
-                clickSaveListButton();
-        PIMPageLocators.mark_ferson_ros.shouldHave(text("Mark Ferson Ros"));
 
     }
 

@@ -18,7 +18,6 @@ public class DirectoryPage {
     @Step("Enter the name")
     public static void enterTheName() {
         name_field.sendKeys(NAME);
-
     }
 
     @Step("Click search button")

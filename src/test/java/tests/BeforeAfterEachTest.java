@@ -48,7 +48,7 @@ public class BeforeAfterEachTest {
     @Link("https://opensource-demo.orangehrmlive.com/index.php/dashboard")
     @AfterEach
     @Test
-    @Order(11)
+    @Order(12)
     @DisplayName("Log out")
 
     public void testTearDownLogout ()  {
