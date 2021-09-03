@@ -17,6 +17,7 @@ public class LeavePageLocators {
 
     public static final SelenideElement employee_name_field_assign = $x("//input[@id='assignleave_txtEmployee_empName']");
     public static final SelenideElement leave_type_field_assign = $x("//select[@id='assignleave_txtLeaveType']");
+    public static final SelenideElement leave_type_vacation = $x("//select[@id='assignleave_txtLeaveType']//child::option [6]");
     public static final SelenideElement from_date_field = $x("//input[@id='assignleave_txtFromDate']");
     public static final SelenideElement to_date_field = $x("//input[@id='assignleave_txtToDate']");
 
@@ -28,9 +29,8 @@ public class LeavePageLocators {
 
     public static final SelenideElement checkbox_all = $x("//input[@id='leaveList_chkSearchFilter_checkboxgroup_allcheck']");
 
-    //User employee name
+    //Employee name
 
     public static final SelenideElement anthony_nolan = $x("//a[text()=\"Anthony Nolan\"]");
-
 
 }

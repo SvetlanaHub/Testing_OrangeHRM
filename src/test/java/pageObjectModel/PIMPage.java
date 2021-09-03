@@ -2,9 +2,6 @@ package pageObjectModel;
 
 import io.qameta.allure.Step;
 import java.io.File;
-
-import static locators.DirectoryPageLocators.name_field;
-import static locators.DirectoryPageLocators.search_button;
 import static locators.PIMPageLocators.*;
 
 public class PIMPage {
@@ -46,7 +43,12 @@ public class PIMPage {
 
     @Step("Click on name link")
     public static void clickOnNameLink() {
-        name_link.click();
+        mark_link.click();
+    }
+
+    @Step("Click on name")
+    public static void clickOnName() {
+        anthony_link.click();
     }
 
     @Step("Click edit button")

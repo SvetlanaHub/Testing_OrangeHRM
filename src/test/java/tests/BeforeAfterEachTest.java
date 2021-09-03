@@ -5,8 +5,7 @@ import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.*;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.*;
-import pageElement.LogoutPageElement;
-import pageObjectModel.DashboardPage;
+import pageElements.PageElements;
 import pageObjectModel.LoginPage;
 import utils.WebEventListener;
 
@@ -37,7 +36,7 @@ public class BeforeAfterEachTest {
         addListener(new WebEventListener());
         LoginPage.openLoginPage();
                   login();
-        DashboardPage.welcome_message.shouldBe(visible);
+        PageElements.welcome_message.shouldBe(visible);
 
     }
 
@@ -53,8 +52,9 @@ public class BeforeAfterEachTest {
 
     public void testTearDownLogout ()  {
 
-        DashboardPage.welcome_message.click();
-        LogoutPageElement.logout();
+        PageElements.welcome_message.click();
+        PageElements.logout();
+        PageElements.login_panel.shouldHave(text("LOGIN Panel"));
         closeWebDriver();
 
     }

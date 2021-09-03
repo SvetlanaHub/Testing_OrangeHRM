@@ -8,6 +8,7 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 import pageObjectModel.*;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.switchTo;
 import static pageObjectModel.AdminPage.*;
 import static pageObjectModel.DirectoryPage.*;
@@ -30,6 +31,7 @@ public class Tests extends BeforeAfterEachTest {
     @Severity(SeverityLevel.CRITICAL)
     @Feature("Add user to the site")
     @Link("https://opensource-demo.orangehrmlive.com/index.php/admin/saveSystemUser")
+    @Flaky
     @Test
     @Order(2)
     @DisplayName("Add user")
@@ -43,6 +45,8 @@ public class Tests extends BeforeAfterEachTest {
         AdminPageLocators.anthony_nolan.shouldHave(text("Anthony Nolan"));
 
     }
+
+
     @Description("Form validation with employee details")
     @Owner("Svetlana Petrovich")
     @Severity(SeverityLevel.CRITICAL)
@@ -56,9 +60,21 @@ public class Tests extends BeforeAfterEachTest {
 
         PIMPage.clickMenuPIM();
                 clickEmployeeListMenu();
-        //enterTheDataInTheFieldsAddUser();
-        //clickSaveButton();
-        //AdminPageLocators.anthony_nolan.shouldHave(text("Anthony Nolan"));
+                clickOnName();
+        PIMPageLocators.personal_first_name_field.shouldBe(visible);
+        PIMPageLocators.personal_first_name_field.shouldHave(text("Anthony"));
+        PIMPageLocators.personal_last_name_field.shouldBe(visible);
+        PIMPageLocators.personal_last_name_field.shouldHave(text("Nolan"));
+        PIMPageLocators.personal_employee_id_field.shouldBe(visible);
+        PIMPageLocators.personal_employee_id_field.shouldHave(text("0070"));
+        PIMPageLocators.personal_gender_field.shouldBe(visible);
+        PIMPageLocators.personal_gender_field.shouldHave(text("Male"));
+        PIMPageLocators.nationality_field.shouldBe(visible);
+        PIMPageLocators.nationality_field.shouldHave(text("Canadian"));
+        PIMPageLocators.marital_status_field.shouldBe(visible);
+        PIMPageLocators.marital_status_field.shouldHave(text("Married"));
+        PIMPageLocators.date_of_birth_field.shouldBe(visible);
+        PIMPageLocators.date_of_birth_field.shouldHave(text("1970-02-10"));
 
     }
 
@@ -86,6 +102,7 @@ public class Tests extends BeforeAfterEachTest {
 
     }
 
+
     @Description("Checking for adding a three job title")
     @Owner("Svetlana Petrovich")
     @Severity(SeverityLevel.CRITICAL)
@@ -105,6 +122,7 @@ public class Tests extends BeforeAfterEachTest {
                   clickSaveButton();
 
     }
+
 
     @Description("Checking delete of three job titles")
     @Owner("Svetlana Petrovich")
@@ -126,6 +144,7 @@ public class Tests extends BeforeAfterEachTest {
 
     }
 
+
     @Description("Checking for adding a candidate without validating the form")
     @Owner("Svetlana Petrovich")
     @Severity(SeverityLevel.CRITICAL)
@@ -143,6 +162,7 @@ public class Tests extends BeforeAfterEachTest {
         RecruitmentPageLocators.required_message.shouldHave(CollectionCondition.size(3));
 
     }
+
 
     @Description("Checking the addition of an employee")
     @Owner("Svetlana Petrovich")
@@ -162,6 +182,7 @@ public class Tests extends BeforeAfterEachTest {
         PIMPageLocators.mark_ros.shouldHave(text("Mark Ros"));
 
     }
+
 
     @Description("Checking employee edits")
     @Owner("Svetlana Petrovich")
@@ -186,6 +207,7 @@ public class Tests extends BeforeAfterEachTest {
 
     }
 
+
     @Description("Check the presence of elements in the dashboard")
     @Owner("Svetlana Petrovich")
     @Severity(SeverityLevel.CRITICAL)
@@ -200,6 +222,7 @@ public class Tests extends BeforeAfterEachTest {
         DashboardPage.quick_launge.shouldHave(CollectionCondition.size(6));
 
     }
+
 
     @Description("Checking the search for personnel by category (name)")
     @Owner("Svetlana Petrovich")

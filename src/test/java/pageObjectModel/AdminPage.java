@@ -8,7 +8,7 @@ public class AdminPage {
     //Values of fields in the add user form
 
     public static final String EMPLOYEE_NAME = ("Anthony Nolan");
-    public static final CharSequence USERNAME = ("anthony");
+    public static final CharSequence USERNAME = ("anthonyN");
     public static final CharSequence PASSWORD = ("378-admin-UX");
     public static final String CONFIRM_PASSWORD = ("378-admin-UX");
 
