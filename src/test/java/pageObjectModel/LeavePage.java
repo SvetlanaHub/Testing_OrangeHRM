@@ -46,6 +46,10 @@ public class LeavePage {
         confirm_ok_button.click();
     }
 
+    @Step("Click button search")
+    public static void clickButtonSearch() {
+        button_search.click();
+    }
 
 
     @Step("Click leave list menu")

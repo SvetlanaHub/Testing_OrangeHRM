@@ -9,11 +9,11 @@ public class DirectoryPage {
 
     public static final CharSequence NAME = ("Cecil Bonaparte");
 
-
     @Step("Click directory menu")
     public static void clickDirectoryMenu() {
         directory_menu.click();
     }
+
 
     @Step("Enter the name")
     public static void enterTheName() {

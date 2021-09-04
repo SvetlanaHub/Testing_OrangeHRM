@@ -1,8 +1,6 @@
 package pageObjectModel;
 
 import static locators.AdminPageLocators.*;
-import static locators.LeavePageLocators.confirm_ok_button;
-
 import io.qameta.allure.Step;
 import java.io.File;
 public class AdminPage {
@@ -10,7 +8,7 @@ public class AdminPage {
     //Values of fields in the add user form
 
     public static final String EMPLOYEE_NAME = ("Anthony Nolan");
-    public static final CharSequence USERNAME = ("anthony");
+    public static final CharSequence USERNAME = ("antonito");
     public static final CharSequence PASSWORD = ("378-admin-UX");
     public static final String CONFIRM_PASSWORD = ("378-admin-UX");
 

@@ -18,7 +18,6 @@ import static pageObjectModel.PIMPage.*;
 import io.qameta.allure.*;
 
 
-
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 
@@ -54,7 +53,7 @@ public class Tests extends BeforeAfterEachTest {
     @Link("https://opensource-demo.orangehrmlive.com/index.php/pim/viewEmployee/empNumber/18")
     @Flaky
     @Test
-    //@Disabled
+    @Disabled
     @Order(3)
     @DisplayName("Employee details")
 
@@ -87,7 +86,6 @@ public class Tests extends BeforeAfterEachTest {
     @Feature("Assign leave")
     @Link("https://opensource-demo.orangehrmlive.com/index.php/leave/assignLeave")
     @Test
-    //@Disabled("The assign button is not pressed")
     @Order(4)
     @DisplayName("Assign leave")
 
@@ -100,7 +98,7 @@ public class Tests extends BeforeAfterEachTest {
                   clickOKInConfirmDialog();
                   clickLeaveListMenu();
                   clickСheckboxAll();
-        DirectoryPage.clickSearchButton();
+                  clickButtonSearch();
         LeavePageLocators.anthony_nolan.shouldHave(text("Anthony Nolan"));
 
     }

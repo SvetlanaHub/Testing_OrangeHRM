@@ -25,6 +25,8 @@ public class LeavePageLocators {
 
     public static final SelenideElement assign_button = $("#assignBtn");
     public static final SelenideElement confirm_ok_button = $("#confirmOkButton");
+    public static final SelenideElement button_search = $("#btnSearch");
+
 
     //Checkbox
 
