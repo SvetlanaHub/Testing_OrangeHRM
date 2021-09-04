@@ -26,6 +26,7 @@ public class Tests extends BeforeAfterEachTest {
     @RegisterExtension
     static ScreenShooterExtension screenshotEmAll = new ScreenShooterExtension(true).to("resources/screenshots");
 
+
     @Description("Checking for added user with form validation")
     @Owner("Svetlana Petrovich")
     @Severity(SeverityLevel.CRITICAL)
