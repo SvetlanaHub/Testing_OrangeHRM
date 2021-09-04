@@ -1,8 +1,9 @@
 package locators;
 
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$x;
+
+import static com.codeborne.selenide.Selenide.*;
 
 public class AdminPageLocators {
 
@@ -15,10 +16,8 @@ public class AdminPageLocators {
 
     //User add form fields
 
-    public static final SelenideElement user_role_field = $("#systemUser_userType");
     public static final SelenideElement employee_name_field = $x("//input[@id=\"systemUser_employeeName_empName\"]");
     public static final SelenideElement username_field = $("#systemUser_userName");
-    public static final SelenideElement status_field = $("#systemUser_status");
     public static final SelenideElement password_field = $("#systemUser_password");
     public static final SelenideElement confirm_password_field = $("#systemUser_confirmPassword");
 
@@ -37,6 +36,10 @@ public class AdminPageLocators {
 
     public static final SelenideElement menu_admin_Job = $("#menu_admin_Job");
     public static final SelenideElement menu_job_titles = $("#menu_admin_viewJobTitleList");
+
+    //Job titles
+
+    public static final ElementsCollection job_titles = $$x("//a[starts-with(text(),'QA')]");
 
 
 }

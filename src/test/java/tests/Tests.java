@@ -3,13 +3,14 @@ package tests;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.junit5.ScreenShooterExtension;
 import locators.*;
+import org.junit.Ignore;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import pageObjectModel.*;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.switchTo;
+import static locators.PIMPageLocators.*;
 import static pageObjectModel.AdminPage.*;
 import static pageObjectModel.DirectoryPage.*;
 import static pageObjectModel.LeavePage.*;
@@ -33,6 +34,7 @@ public class Tests extends BeforeAfterEachTest {
     @Link("https://opensource-demo.orangehrmlive.com/index.php/admin/saveSystemUser")
     @Flaky
     @Test
+    @Ignore
     @Order(2)
     @DisplayName("Add user")
 
@@ -61,20 +63,20 @@ public class Tests extends BeforeAfterEachTest {
         PIMPage.clickMenuPIM();
                 clickEmployeeListMenu();
                 clickOnName();
-        PIMPageLocators.personal_first_name_field.shouldBe(visible);
-        PIMPageLocators.personal_first_name_field.shouldHave(text("Anthony"));
-        PIMPageLocators.personal_last_name_field.shouldBe(visible);
-        PIMPageLocators.personal_last_name_field.shouldHave(text("Nolan"));
-        PIMPageLocators.personal_employee_id_field.shouldBe(visible);
-        PIMPageLocators.personal_employee_id_field.shouldHave(text("0070"));
-        PIMPageLocators.personal_gender_field.shouldBe(visible);
-        PIMPageLocators.personal_gender_field.shouldHave(text("Male"));
-        PIMPageLocators.nationality_field.shouldBe(visible);
-        PIMPageLocators.nationality_field.shouldHave(text("Canadian"));
-        PIMPageLocators.marital_status_field.shouldBe(visible);
-        PIMPageLocators.marital_status_field.shouldHave(text("Married"));
-        PIMPageLocators.date_of_birth_field.shouldBe(visible);
-        PIMPageLocators.date_of_birth_field.shouldHave(text("1970-02-10"));
+        personal_first_name_field.shouldBe(visible);
+        personal_first_name_field.shouldHave(text("Anthony"));
+        personal_last_name_field.shouldBe(visible);
+        personal_last_name_field.shouldHave(text("Nolan"));
+        personal_employee_id_field.shouldBe(visible);
+        personal_employee_id_field.shouldHave(text("0070"));
+        personal_gender_field.shouldBe(visible);
+        personal_gender_field.shouldBe(not(empty));
+        nationality_field.shouldBe(visible);
+        nationality_field.shouldHave(text("Canadian"));
+        marital_status_field.shouldBe(visible);
+        marital_status_field.shouldHave(text("Married"));
+        date_of_birth_field.shouldBe(visible);
+        date_of_birth_field.shouldHave(text("1970-02-10"));
 
     }
 
@@ -103,14 +105,14 @@ public class Tests extends BeforeAfterEachTest {
     }
 
 
-    @Description("Checking for adding a three job title")
+    @Description("Checking for adding a three job titles")
     @Owner("Svetlana Petrovich")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("Add job title to the site")
     @Link("https://opensource-demo.orangehrmlive.com/index.php/admin/saveJobTitle")
     @Test
     @Order(5)
-    @DisplayName("Add job title")
+    @DisplayName("Add three job titles")
 
     void testAddJobTitle() {
 
@@ -118,8 +120,15 @@ public class Tests extends BeforeAfterEachTest {
                   clickMenuAdminJob();
                   clickMenuJobTitles();
                   clickAddJobTitlesButton();
-                  enterTheDataInTheFieldsAddJobTitles();
+                  enterTheDataInTheFieldsAddTheFirstJobTitle();
                   clickSaveButton();
+                  clickAddJobTitlesButton();
+                  enterTheDataInTheFieldsAddTheSecondJobTitle();
+                  clickSaveButton();
+                  clickAddJobTitlesButton();
+                  enterTheDataInTheFieldsAddTheThirdJobTitle();
+                  clickSaveButton();
+        AdminPageLocators.job_titles.shouldHave(CollectionCondition.texts("QA automation engineer","QA manual","QA Team Lead"));
 
     }
 
@@ -131,7 +140,7 @@ public class Tests extends BeforeAfterEachTest {
     //@Link("https://opensource-demo.orangehrmlive.com/index.php/admin/saveJobTitle")
     @Test
     @Order(6)
-    @DisplayName("Delete job titles")
+    @DisplayName("Delete three job titles")
 
     void testDeleteJobTitle() {
 

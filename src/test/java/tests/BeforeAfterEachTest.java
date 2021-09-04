@@ -12,6 +12,7 @@ import utils.WebEventListener;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static com.codeborne.selenide.WebDriverRunner.addListener;
+import static pageElements.PageElements.*;
 import static pageObjectModel.LoginPage.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -29,7 +30,7 @@ public class BeforeAfterEachTest {
     @Order(1)
     @DisplayName("Login")
 
-    public void testSetuplogin() {
+    public void testLogin() {
 
         Configuration.startMaximized = true;
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(true));
@@ -50,11 +51,11 @@ public class BeforeAfterEachTest {
     @Order(12)
     @DisplayName("Log out")
 
-    public void testTearDownLogout ()  {
+    public void testLogout ()  {
 
         PageElements.welcome_message.click();
-        PageElements.logout();
-        PageElements.login_panel.shouldHave(text("LOGIN Panel"));
+        logout();
+        login_panel.shouldHave(text("LOGIN Panel"));
         closeWebDriver();
 
     }
