@@ -13,6 +13,8 @@ public class AdminPageLocators {
     public static final SelenideElement add_button = $("#btnAdd");
     public static final SelenideElement save_button = $("#btnSave");
     public static final SelenideElement add_job_titles_button = $("#btnAdd");
+    public static final SelenideElement delete_button = $("#btnDelete");
+    public static final SelenideElement dialog_delete_button = $("#dialogDeleteBtn");
 
     //User add form fields
 
@@ -39,7 +41,12 @@ public class AdminPageLocators {
 
     //Job titles
 
-    public static final ElementsCollection job_titles = $$x("//a[starts-with(text(),'QA')]");
+    public static final ElementsCollection job_titles = $$x("//a[starts-with(text(),'AQA')]");
 
+    //Checkbox
+
+    public static final SelenideElement checkbox_1 = $x("//a[text()='AQA engineer']/../..//input[@type='checkbox']");
+    public static final SelenideElement checkbox_2 = $x("//a[text()='AQA Team Lead']/../..//input[@type='checkbox']");
+    public static final SelenideElement checkbox_3 = $x("//a[text()='AQA tester']/../..//input[@type='checkbox']");
 
 }

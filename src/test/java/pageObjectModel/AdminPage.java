@@ -1,6 +1,8 @@
 package pageObjectModel;
 
 import static locators.AdminPageLocators.*;
+import static locators.LeavePageLocators.confirm_ok_button;
+
 import io.qameta.allure.Step;
 import java.io.File;
 public class AdminPage {
@@ -14,11 +16,11 @@ public class AdminPage {
 
     //Values of fields in the add job titles
 
-    public static final String JOB_TITLE_1 = ("QA automation engineer");
-    public static final String JOB_TITLE_2 = ("QA Team Lead");
-    public static final String JOB_TITLE_3 = ("QA manual");
+    public static final String JOB_TITLE_1 = ("AQA engineer");
+    public static final String JOB_TITLE_2 = ("AQA Team Lead");
+    public static final String JOB_TITLE_3 = ("AQA tester");
     public static final String JOB_DESCRIPTION = ("Development of automated tests to validate the functionality of web applications");
-    public static final String JOB_DESCRIPTION_3 = ("Manual testing of web applications");
+    public static final String JOB_DESCRIPTION_3 = ("Testing of web applications");
     private static final String JOB_SPECIFICATION_1 = new File("src/main/resources/AQA1.jpg").getAbsolutePath();
     private static final String JOB_SPECIFICATION_2 = new File("src/main/resources/AQA2.jpg").getAbsolutePath();
     public static final String NOTE = ("-");
@@ -90,4 +92,23 @@ public class AdminPage {
         job_description_field.sendKeys(JOB_DESCRIPTION_3);
 
     }
+
+    @Step("Click three checkbox")
+    public static void clickThreeCheckbox() {
+
+        checkbox_1.click();
+        checkbox_2.click();
+        checkbox_3.click();
+    }
+
+    @Step("Click delete button")
+    public static void clickDeleteButton() {
+        delete_button.click();
+    }
+
+    @Step("Click OK in the dialog")
+    public static void clickOKInTheDialog() {
+        dialog_delete_button.click();
+    }
+
 }

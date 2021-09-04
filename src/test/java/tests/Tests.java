@@ -3,13 +3,12 @@ package tests;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.junit5.ScreenShooterExtension;
 import locators.*;
-import org.junit.Ignore;
+
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import pageObjectModel.*;
 
 import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selenide.switchTo;
 import static locators.PIMPageLocators.*;
 import static pageObjectModel.AdminPage.*;
 import static pageObjectModel.DirectoryPage.*;
@@ -17,6 +16,7 @@ import static pageObjectModel.LeavePage.*;
 import static pageObjectModel.PIMPage.*;
 
 import io.qameta.allure.*;
+
 
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -32,9 +32,7 @@ public class Tests extends BeforeAfterEachTest {
     @Severity(SeverityLevel.CRITICAL)
     @Feature("Add user to the site")
     @Link("https://opensource-demo.orangehrmlive.com/index.php/admin/saveSystemUser")
-    @Flaky
     @Test
-    @Ignore
     @Order(2)
     @DisplayName("Add user")
 
@@ -54,7 +52,9 @@ public class Tests extends BeforeAfterEachTest {
     @Severity(SeverityLevel.CRITICAL)
     @Feature("Form validation with employee details")
     @Link("https://opensource-demo.orangehrmlive.com/index.php/pim/viewEmployee/empNumber/18")
+    @Flaky
     @Test
+    //@Disabled
     @Order(3)
     @DisplayName("Employee details")
 
@@ -70,7 +70,7 @@ public class Tests extends BeforeAfterEachTest {
         personal_employee_id_field.shouldBe(visible);
         personal_employee_id_field.shouldHave(text("0070"));
         personal_gender_field.shouldBe(visible);
-        personal_gender_field.shouldBe(not(empty));
+        personal_gender_field.shouldBe(enabled);
         nationality_field.shouldBe(visible);
         nationality_field.shouldHave(text("Canadian"));
         marital_status_field.shouldBe(visible);
@@ -87,6 +87,7 @@ public class Tests extends BeforeAfterEachTest {
     @Feature("Assign leave")
     @Link("https://opensource-demo.orangehrmlive.com/index.php/leave/assignLeave")
     @Test
+    //@Disabled("The assign button is not pressed")
     @Order(4)
     @DisplayName("Assign leave")
 
@@ -96,7 +97,7 @@ public class Tests extends BeforeAfterEachTest {
                   clickAssignLeaveMenu();
                   enterTheDataInTheAssignLeaveFormFields();
                   clickAssignButton();
-                  switchTo().alert().accept();
+                  clickOKInConfirmDialog();
                   clickLeaveListMenu();
                   clickСheckboxAll();
         DirectoryPage.clickSearchButton();
@@ -128,7 +129,7 @@ public class Tests extends BeforeAfterEachTest {
                   clickAddJobTitlesButton();
                   enterTheDataInTheFieldsAddTheThirdJobTitle();
                   clickSaveButton();
-        AdminPageLocators.job_titles.shouldHave(CollectionCondition.texts("QA automation engineer","QA manual","QA Team Lead"));
+        AdminPageLocators.job_titles.shouldHave(CollectionCondition.exactTexts("AQA engineer","AQA Team Lead","AQA tester"));
 
     }
 
@@ -137,19 +138,20 @@ public class Tests extends BeforeAfterEachTest {
     @Owner("Svetlana Petrovich")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("Delete job titles to the site")
-    //@Link("https://opensource-demo.orangehrmlive.com/index.php/admin/saveJobTitle")
+    @Link("https://opensource-demo.orangehrmlive.com/index.php/admin/viewJobTitleList")
     @Test
     @Order(6)
     @DisplayName("Delete three job titles")
 
     void testDeleteJobTitle() {
 
-        //AdminPage.clickAdminButton();
-        //clickMenuAdminJob();
-        //clickMenuJobTitles();
-        //clickAddJobTitlesButton();
-        //enterTheDataInTheFieldsAddJobTitles();
-        //clickSaveButton();
+        AdminPage.clickAdminButton();
+                  clickMenuAdminJob();
+                  clickMenuJobTitles();
+                  clickThreeCheckbox();
+                  clickDeleteButton();
+                  clickOKInTheDialog();
+        AdminPageLocators.job_titles.shouldHave(CollectionCondition.size(0));
 
     }
 
@@ -185,8 +187,8 @@ public class Tests extends BeforeAfterEachTest {
     void testAddEmployee() {
 
         PIMPage.clickMenuPIM();
-        clickAddEmployeeMenu();
-        enterTheDataInTheFormFields();
+                clickAddEmployeeMenu();
+                enterTheDataInTheFormFields();
         AdminPage.clickSaveButton();
         PIMPageLocators.mark_ros.shouldHave(text("Mark Ros"));
 

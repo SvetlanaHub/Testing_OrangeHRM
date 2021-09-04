@@ -41,6 +41,12 @@ public class LeavePage {
         assign_button.pressEnter();
     }
 
+    @Step("Click OK in confirm dialog")
+    public static void clickOKInConfirmDialog() {
+        confirm_ok_button.click();
+    }
+
+
 
     @Step("Click leave list menu")
     public static void clickLeaveListMenu() {

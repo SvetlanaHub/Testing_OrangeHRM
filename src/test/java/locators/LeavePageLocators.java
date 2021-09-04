@@ -21,9 +21,10 @@ public class LeavePageLocators {
     public static final SelenideElement from_date_field = $x("//input[@id='assignleave_txtFromDate']");
     public static final SelenideElement to_date_field = $x("//input[@id='assignleave_txtToDate']");
 
-    //Assign button
+    //Buttons
 
     public static final SelenideElement assign_button = $("#assignBtn");
+    public static final SelenideElement confirm_ok_button = $("#confirmOkButton");
 
     //Checkbox
 
