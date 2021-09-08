@@ -3,16 +3,18 @@ package tests;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.junit5.ScreenShooterExtension;
 import locators.*;
-
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.RegisterExtension;
+import pageElements.PageElements;
 import pageObjectModel.*;
-
 import static com.codeborne.selenide.Condition.*;
 import static locators.PIMPageLocators.*;
+import static pageElements.PageElements.login_panel;
+import static pageElements.PageElements.logout;
 import static pageObjectModel.AdminPage.*;
 import static pageObjectModel.DirectoryPage.*;
 import static pageObjectModel.LeavePage.*;
+import static pageObjectModel.LoginPage.login;
 import static pageObjectModel.PIMPage.*;
 
 import io.qameta.allure.*;
@@ -26,6 +28,23 @@ public class Tests extends BeforeAfterEachTest {
     @RegisterExtension
     static ScreenShooterExtension screenshotEmAll = new ScreenShooterExtension(true).to("resources/screenshots");
 
+    @Description("Login test with a valid username and password")
+    @Owner("Svetlana Petrovich")
+    @Severity(SeverityLevel.BLOCKER)
+    @Feature("Login to the site")
+    @Link("https://opensource-demo.orangehrmlive.com/")
+    @Test
+    @Order(1)
+    @DisplayName("Login")
+
+    void testLogin() {
+
+        LoginPage.openLoginPage();
+        login();
+        PageElements.welcome_message.shouldBe(visible);
+
+    }
+
 
     @Description("Checking for added user with form validation")
     @Owner("Svetlana Petrovich")
@@ -38,6 +57,8 @@ public class Tests extends BeforeAfterEachTest {
 
     void testAddUser() {
 
+        LoginPage.openLoginPage();
+                  login();
         AdminPage.clickAdminButton();
                   clickAddButton();
                   enterTheDataInTheFieldsAddUser();
@@ -60,6 +81,8 @@ public class Tests extends BeforeAfterEachTest {
 
     void testEmployeeDetails() {
 
+        LoginPage.openLoginPage();
+                  login();
         PIMPage.clickMenuPIM();
                 clickEmployeeListMenu();
                 clickOnName();
@@ -92,6 +115,8 @@ public class Tests extends BeforeAfterEachTest {
 
     void testAssignLeave() {
 
+        LoginPage.openLoginPage();
+                  login();
         LeavePage.clickMenuLeave();
                   clickAssignLeaveMenu();
                   enterTheDataInTheAssignLeaveFormFields();
@@ -116,6 +141,8 @@ public class Tests extends BeforeAfterEachTest {
 
     void testAddJobTitle() {
 
+        LoginPage.openLoginPage();
+                  login();
         AdminPage.clickAdminButton();
                   clickMenuAdminJob();
                   clickMenuJobTitles();
@@ -144,6 +171,8 @@ public class Tests extends BeforeAfterEachTest {
 
     void testDeleteJobTitle() {
 
+        LoginPage.openLoginPage();
+                  login();
         AdminPage.clickAdminButton();
                   clickMenuAdminJob();
                   clickMenuJobTitles();
@@ -166,6 +195,8 @@ public class Tests extends BeforeAfterEachTest {
 
     void testAddСandidate() {
 
+        LoginPage.openLoginPage();
+                  login();
         RecruitmentPage.clickMenuRecruitment();
         AdminPage.clickAddButton();
                   clickSaveButton();
@@ -185,6 +216,8 @@ public class Tests extends BeforeAfterEachTest {
 
     void testAddEmployee() {
 
+        LoginPage.openLoginPage();
+                  login();
         PIMPage.clickMenuPIM();
                 clickAddEmployeeMenu();
                 enterTheDataInTheFormFields();
@@ -205,14 +238,16 @@ public class Tests extends BeforeAfterEachTest {
 
     void testEditEmployee() {
 
+        LoginPage.openLoginPage();
+                  login();
         PIMPage.clickMenuPIM();
-        clickEmployeeListMenu();
-        enterTheEmployeeName();
-        clickSearchListButton();
-        clickOnNameLink();
-        clickEditButton();
-        enterTheMiddleName();
-        clickSaveListButton();
+                clickEmployeeListMenu();
+                enterTheEmployeeName();
+                clickSearchListButton();
+                clickOnNameLink();
+                clickEditButton();
+                enterTheMiddleName();
+                clickSaveListButton();
         PIMPageLocators.mark_ferson_ros.shouldHave(text("Mark Ferson Ros"));
 
     }
@@ -229,6 +264,8 @@ public class Tests extends BeforeAfterEachTest {
 
     void testPresenceOfElements() {
 
+        LoginPage.openLoginPage();
+                  login();
         DashboardPage.quick_launge.shouldHave(CollectionCondition.size(6));
 
     }
@@ -245,10 +282,32 @@ public class Tests extends BeforeAfterEachTest {
 
     void testSearchForPersonnel() {
 
+        LoginPage.openLoginPage();
+                  login();
         DirectoryPage.clickDirectoryMenu();
                       enterTheName();
                       clickSearchButton();
         DirectoryPageLocators.name.shouldHave(text("Cecil Bonaparte"));
+
+    }
+
+
+    @Description("Log out test")
+    @Owner("Svetlana Petrovich")
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("Log out of the site")
+    @Link("https://opensource-demo.orangehrmlive.com/index.php/dashboard")
+    @Test
+    @Order(12)
+    @DisplayName("Log out")
+
+    void testLogout ()  {
+
+        LoginPage.openLoginPage();
+                  login();
+        PageElements.welcome_message.click();
+                  logout();
+        login_panel.shouldHave(text("LOGIN Panel"));
 
     }
 

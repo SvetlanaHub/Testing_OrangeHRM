@@ -109,12 +109,23 @@
             <configuration>
                 <testFailureIgnore>true</testFailureIgnore>
                 <useSystemClassLoader>false</useSystemClassLoader>
+                <!--suppress UnresolvedMavenProperty -->
+                <argLine>
+                    -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                </argLine>
                 <properties>
                     <property>
                         <name>listener</name>
                         <value>io.qameta.allure.junit5.AllureJunit5</value>
                     </property>
                 </properties>
+                <systemProperties>
+                    <property>
+                        <name>allure.results.directory</name>
+                        <!--suppress UnresolvedMavenProperty -->
+                        <value>${project.target.directory}/allure-results</value>
+                    </property>
+                </systemProperties>
             </configuration>
             <dependencies>
                 <dependency>
